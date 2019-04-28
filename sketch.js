@@ -1,5 +1,5 @@
 let data = [];
-const regression = new PolynomialTF(4);
+let regression = new PolynomialTF(2, 0.3);
 
 function setup() {
     let canvas = createCanvas(400, 400);
@@ -42,6 +42,16 @@ function resetPoints() {
     data = [];
 }
 
+function resetRegression() {
+    let n = parseInt(document.getElementById("power").value);
+    let learningRate = parseFloat(document.getElementById("learningRate").value);
+
+    if (!isNaN(n) && !isNaN(learningRate))
+        regression = new PolynomialTF(Math.abs(n), Math.abs(learningRate));
+    else
+        regression = new PolynomialTF(2, 0.3);
+}
+
 function getXs() {
     let result = [];
     for (let i = 0; i < data.length; i++) {
@@ -56,4 +66,8 @@ function getYs() {
         result.push(data[i].y);
     }
     return result;
+}
+
+function setPolynomial() {
+    console.log("Do nothing...");
 }

@@ -1,10 +1,10 @@
 class PolynomialTF {
-    constructor(n) {
+    constructor(n, l) {
         this.power = n;
         this.muls = new Array(n + 1);
         for (let i = 0; i < this.muls.length; i++)
             this.muls[i] = tf.variable(tf.scalar(Math.random()));
-        this.learningRate = 0.1;
+        this.learningRate = l;
         this.optimizer = tf.train.adam(this.learningRate);
     }
 
