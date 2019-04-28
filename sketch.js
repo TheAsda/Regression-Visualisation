@@ -1,5 +1,5 @@
 let data = [];
-const regression = new LinearTF();
+const regression = new PolynomialTF(4);
 
 function setup() {
     let canvas = createCanvas(400, 400);
@@ -16,20 +16,26 @@ function draw() {
         ellipse(x, y, 8, 8);
     }
 
-    
-    if (data.length > 1) {
-        regression.train();
-        regression.drawLine();
-    }
+    regression.drawLine();
+    regression.train();
 }
 
-function addPoint() {
-    let x = map(mouseX, 0, width, 0, 1);
-    let y = map(mouseY, 0, height, 1, 0);
-    data.push({
-        'x': x,
-        'y': y
-    });
+function addPoint(x, y) {
+    if (x == undefined && y == undefined) {
+        let x = map(mouseX, 0, width, 0, 1);
+        let y = map(mouseY, 0, height, 1, 0);
+        data.push({
+            'x': x,
+            'y': y
+        });
+    } else {
+        x = map(x, 0, width, 0, 1);
+        y = map(y, 0, height, 1, 0);
+        data.push({
+            'x': x,
+            'y': y
+        });
+    }
 }
 
 function resetPoints() {
