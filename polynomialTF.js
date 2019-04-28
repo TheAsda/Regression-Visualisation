@@ -1,8 +1,8 @@
-class Linear {
+class LinearTF {
     constructor() {
         this.m = 0;
         this.b = 1;
-        this.learningRate = 0.2;
+        this.learningRate = 0.05;
     }
 
     gradientDecent() {
